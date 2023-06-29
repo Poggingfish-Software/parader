@@ -1,3 +1,4 @@
+;; Needed for the browser to work properly.
 (defn preload [info]
   (print "Preloading...")
   (.update info {"bookmarks" (+ (.get info "bookmarks") [["google" "https://google.com"] ["poggingfish" "https://pogging.fish"]])})
