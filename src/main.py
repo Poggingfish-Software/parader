@@ -10,6 +10,7 @@ from PyQt5.QtCore import QUrl
 from time import perf_counter
 import src.events as events
 from PyQt5.QtCore import Qt
+from typing import Dict
 class Window(QMainWindow):
     """The main window for the browser."""
     def change_url(self):
@@ -36,9 +37,9 @@ class Window(QMainWindow):
         self.actionbar: QToolBar = QToolBar("actionbar", self) #: Bookmarks bar.
         self.navbar: QToolBar = QToolBar("navbar", self) #: Navbar, Contains URL bar and Refresh button
         self.addToolBar(Qt.TopToolBarArea, self.navbar)
-        self.URLBar = QLineEdit() #: URl Bar, child of navbar
-        self.Refresh = QPushButton("Refresh") #: Refresh button, child of navbar
-        self.RefreshKey = QShortcut(self) #: Makes F5 call the refresh event
+        self.URLBar: QLineEdit = QLineEdit() #: URl Bar, child of navbar
+        self.Refresh: QPushButton = QPushButton("Refresh") #: Refresh button, child of navbar
+        self.RefreshKey: QShortcut = QShortcut(self) #: Makes F5 call the refresh event
         self.RefreshKey.setKey(QKeySequence(Qt.Key.Key_F5))
         self.RefreshKey.activated.connect(lambda: events.callRefresh())
         self.Refresh.clicked.connect(lambda: events.callRefresh())
@@ -47,7 +48,7 @@ class Window(QMainWindow):
         self.navbar.addWidget(self.Refresh)
         self.addToolBarBreak()
         self.addToolBar(Qt.TopToolBarArea, self.actionbar)
-        self.bmv = {} #: Bookmark items in the Action Bar
+        self.bmv: Dict[str, str] = {} #: Bookmark items in the Action Bar
         self.reload_bookmarks()
         self.actionbar.update()
         self.webview = QWebEngineView()
