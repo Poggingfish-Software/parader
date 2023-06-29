@@ -8,3 +8,4 @@ Base - The base plug for parader
 .. hy:autofunction:: plugs.base.url_changed
 .. hy:autofunction:: plugs.base.refresh
 .. hy:autofunction:: plugs.base.add_bookmark
+.. hy:autofunction:: plugs.base.reloaded
