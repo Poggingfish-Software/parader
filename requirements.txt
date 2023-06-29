@@ -1,0 +1,5 @@
+hy
+PyQT5
+PyQtWebEngine
+Sphinx
+git+https://github.com/hylang/sphinxcontrib-hydomain.git
