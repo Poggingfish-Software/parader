@@ -13,6 +13,7 @@ Welcome to Parader's documentation!
    plug
    base
    events
+   usage
 
 
 Indices and tables
