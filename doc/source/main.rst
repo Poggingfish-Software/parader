@@ -6,3 +6,4 @@ Main - Where all the magic happens!
     :undoc-members:
     :show-inheritance:
 .. autofunction:: src.main.main
+.. autofunction:: src.main.load_plugs

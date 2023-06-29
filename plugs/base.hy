@@ -1,12 +1,12 @@
 ;; Needed for the browser to work properly.
 (defn preload [info]
-  "Adds the default bookmarks and displays the ``Preloading...`` message."
+  "Adds the default bookmarks and context buttons and displays the ``Preloading...`` message."
   (print "Preloading...")
-  (.update info {"bookmarks" (+ (.get info "bookmarks") [["google" "https://google.com"] ["poggingfish" "https://pogging.fish"]])})
+  (.update info {"bookmarks" (+ (.get info "bookmarks") [["google" "https://google.com"] ["poggingfish" "https://pogging.fish"]])}) 
   (return info))
 (defn onload [info]
   "Displays the amount of time it took to load"
-  (print (+ "Loaded in " (str (.get info "load_time")) " seconds!")) 
+  (print (+ "Loaded in " (str (.get info "load_time")) " seconds!"))
   (return info))
 (defn bookmark_clicked [info bookmark]
   "Changes the URL when you click a bookmark"
@@ -15,7 +15,7 @@
   (return info))
 (defn return_url_bar [info url]
   "Changes the current site to the site on the URL bar when you press enter."
-  (.update info {"current_url" url}) 
+  (.update info {"current_url" url})
   ((.get info "change_url_call"))
   (return info))
 (defn url_changed [info url]
@@ -28,7 +28,12 @@
   (print "Refreshing!")
   ((.get info "refresh_call"))
   (return info))
-(defn add_bookmark [info url] 
+(defn add_bookmark [info url]
   "Adds a new bookmark!"
   (.update info {"bookmarks" (+ (.get info "bookmarks") [[url url]])})
   ((.get info "reload_bookmarks")))
+(defn reloaded [info]
+  "Called when the plug is reloaded"
+  (setv info (preload info))
+  (setv info (onload info))
+  (return info))
