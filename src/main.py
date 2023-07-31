@@ -1,6 +1,8 @@
 import hy
 import sys
 import src.plug
+import os
+from sys import platform
 import importlib
 from PyQt5.QtWidgets import *
 from PyQt5.QtWebEngineWidgets import QWebEngineView
@@ -89,10 +91,12 @@ class Window(QMainWindow):
         events.callLoadEvent()
 def main():
     """Runs the browser!"""
+    if platform == "linux":
+        os.environ["QTWEBENGINE_CHROMIUM_FLAGS"] = "--no-sandbox"
     load_plugs()
     events.info["load_time"] = perf_counter()
     events.callPreLoad()
-    app = QApplication(sys.argv)
+    app = QApplication(["--disable-seccomp-filter-sandbox"])
     app.setApplicationName("Parader")
     window = Window()
     app.exec_()

@@ -1,5 +1,5 @@
 hy
-PyQT5
+PyQt5==5.15.6
 PyQtWebEngine
 Sphinx
 git+https://github.com/hylang/sphinxcontrib-hydomain.git
